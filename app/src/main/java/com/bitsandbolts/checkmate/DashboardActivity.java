@@ -34,7 +34,11 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        else Toast.makeText(this,"Welcome to Firebase Authentication",Toast.LENGTH_LONG).show();
+        else {
+            Intent intent = new Intent(DashboardActivity.this,HomepageActivity.class);
+            startActivity(intent);
+            Toast.makeText(this,"Welcome to Firebase Authentication",Toast.LENGTH_LONG).show();
+        }
 
     }
 
