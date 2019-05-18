@@ -2,6 +2,7 @@ package com.bitsandbolts.checkmate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -14,16 +15,40 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.InputStream;
+import java.util.List;
+
 public class HomepageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    private ListView listView;
+    private ItemArrayAdapter itemArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        listView = (ListView) findViewById(R.id.list_view);
+        itemArrayAdapter = new ItemArrayAdapter(getApplicationContext(), R.layout.single_list_item);
+
+        Parcelable state = listView.onSaveInstanceState();
+        listView.setAdapter(itemArrayAdapter);
+        listView.onRestoreInstanceState(state);
+
+        InputStream inputStream = getResources().openRawResource(R.raw.data);
+        CSVReader csv = new CSVReader(inputStream);
+        List<Happening> happenings = csv.read();
+
+        for(Happening happening : happenings) {
+            itemArrayAdapter.add(happening);
+        }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
