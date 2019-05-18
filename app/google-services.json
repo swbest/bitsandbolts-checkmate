@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1035893088524",
+    "firebase_url": "https://bits-and-bolts-2019.firebaseio.com",
+    "project_id": "bits-and-bolts-2019",
+    "storage_bucket": "bits-and-bolts-2019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035893088524:android:31fff0ff3e34870b",
+        "android_client_info": {
+          "package_name": "com.bitsandbolts.checkmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035893088524-7m96j6fvspr3a51dr2tqurlqtsjt2jpj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bitsandbolts.checkmate",
+            "certificate_hash": "7fe04dfe488628b6b3266eca1c85c3f3ab9e5149"
+          }
+        },
+        {
+          "client_id": "1035893088524-ks212bmpmubdl55b3ifub7lapul29c0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFM5lkd5co56NMpeliP5RgG2Day4D2W2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035893088524-ks212bmpmubdl55b3ifub7lapul29c0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
