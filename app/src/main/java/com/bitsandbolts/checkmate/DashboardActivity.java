@@ -37,7 +37,7 @@ public class DashboardActivity extends AppCompatActivity {
         else {
             Intent intent = new Intent(DashboardActivity.this,HomepageActivity.class);
             startActivity(intent);
-            Toast.makeText(this,"Welcome to Firebase Authentication",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Welcome to CheckMate!",Toast.LENGTH_LONG).show();
         }
 
     }

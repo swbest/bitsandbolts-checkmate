@@ -54,13 +54,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     // SignUp in success, Direct to the dashboard Page...
-                    Toast.makeText(RegistrationActivity.this, "Authentication Successfully completed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this, "Sign up successful! Please login.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                     startActivity(intent);
 
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(RegistrationActivity.this, "Authentication failed User already exits",
+                    Toast.makeText(RegistrationActivity.this, "You have already signed up! Try logging in.",
                             Toast.LENGTH_SHORT).show();
                 }
 

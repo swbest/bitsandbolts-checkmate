@@ -16,13 +16,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 
 public class HomepageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +40,7 @@ public class HomepageActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Notification sent to friends!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -111,10 +109,10 @@ public class HomepageActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
 
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(HomepageActivity.this, MapsActivity.class);
+            Intent intent = new Intent(HomepageActivity.this, HotspotActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
-            Intent intent = new Intent(HomepageActivity.this,MapsActivity.class);
+            Intent intent = new Intent(HomepageActivity.this, FriendActivity.class);
             startActivity(intent);
         }
 
