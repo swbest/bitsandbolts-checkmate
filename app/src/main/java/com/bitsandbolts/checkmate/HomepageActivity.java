@@ -16,11 +16,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 public class HomepageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,21 +35,6 @@ public class HomepageActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-        listView = (ListView) findViewById(R.id.list_view);
-        itemArrayAdapter = new ItemArrayAdapter(getApplicationContext(), R.layout.single_list_item);
-
-        Parcelable state = listView.onSaveInstanceState();
-        listView.setAdapter(itemArrayAdapter);
-        listView.onRestoreInstanceState(state);
-
-        InputStream inputStream = getResources().openRawResource(R.raw.data);
-        CSVReader csv = new CSVReader(inputStream);
-        List<Happening> happenings = csv.read();
-
-        for(Happening happening : happenings) {
-            itemArrayAdapter.add(happening);
-        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,6 +53,22 @@ public class HomepageActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        listView = (ListView) findViewById(R.id.list_view);
+        itemArrayAdapter = new ItemArrayAdapter(getApplicationContext(), R.layout.single_list_item);
+
+        Parcelable state = listView.onSaveInstanceState();
+        listView.setAdapter(itemArrayAdapter);
+        listView.onRestoreInstanceState(state);
+
+        InputStream inputStream = getResources().openRawResource(R.raw.data);
+        CSVReader csv = new CSVReader(inputStream);
+        List<Happening> happenings = csv.read();
+
+        for(Happening happening : happenings) {
+            itemArrayAdapter.add(happening);
+        }
+
     }
 
     @Override
@@ -100,7 +103,6 @@ public class HomepageActivity extends AppCompatActivity
         return true;
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -108,10 +110,12 @@ public class HomepageActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
 
-        } else if (id == R.id.nav_hotspots) {
-
-        } else if (id == R.id.nav_friends) {
-
+        } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(HomepageActivity.this, MapsActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(HomepageActivity.this,MapsActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
