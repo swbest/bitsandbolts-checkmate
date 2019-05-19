@@ -20,7 +20,9 @@ public class ItemArrayAdapter extends ArrayAdapter {
     }
 
     static class ItemViewHolder {
-        TextView happening;
+        TextView date;
+        TextView time;
+        TextView location;
     }
 
     public void add(Happening object) {
@@ -46,14 +48,18 @@ public class ItemArrayAdapter extends ArrayAdapter {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.single_list_item, parent, false);
             viewHolder = new ItemViewHolder();
-            viewHolder.happening = (TextView) row.findViewById(R.id.happening);
+            viewHolder.date = (TextView) row.findViewById(R.id.date);
+            viewHolder.time = (TextView) row.findViewById(R.id.time);
+            viewHolder.location = (TextView) row.findViewById(R.id.location);
             row.setTag(viewHolder);
         } else {
             viewHolder = (ItemViewHolder) row.getTag();
         }
 
         Happening stat = getItem(position);
-        viewHolder.happening.setText(stat.toString());
+        viewHolder.date.setText(stat.getDate());
+        viewHolder.time.setText(stat.getTime());
+        viewHolder.location.setText(stat.getLocation());
         return row;
     }
 }

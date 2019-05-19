@@ -26,7 +26,19 @@ public class CSVReader {
                 if (!line.equals("")) {
                     String[] temp = line.split(",");
                     String location = temp[0] + ", " + temp[1];
-                    String date = temp[2] + "/" + temp[3] + "/" + temp[4];
+                    if (Integer.parseInt(temp[2]) < 10) {
+                        temp[2] = "0" + temp[2];
+                    }
+                    if (Integer.parseInt(temp[3]) < 10) {
+                        temp[3] = "0" + temp[3];
+                    }
+                        String date = temp[2] + "/" + temp[3] + "/" + temp[4];
+                    if (Integer.parseInt(temp[5]) < 10) {
+                        temp[5] = "0" + temp[5];
+                    }
+                    if (Integer.parseInt(temp[6]) < 10) {
+                        temp[6] = "0" + temp[6];
+                    }
                     String time = temp[5] + ":" + temp[6];
                     resultList.add(new Happening(location, date, time));
                 }

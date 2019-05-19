@@ -1,10 +1,13 @@
 package com.bitsandbolts.checkmate;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,17 +25,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.InputStream;
 import java.util.List;
 
+import static com.bitsandbolts.checkmate.App.CHANNEL_1_ID;
+
 public class HomepageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private ListView listView;
     private ItemArrayAdapter itemArrayAdapter;
+    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,8 +48,21 @@ public class HomepageActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Notification sent to friends!", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "You have sent a distress signal.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                String title = "CheckMate";
+                String message = "Your friend needs your help urgently.";
+
+
+                Notification notification = new NotificationCompat.Builder(HomepageActivity.this, CHANNEL_1_ID)
+                        .setSmallIcon(R.drawable.ic_help)
+                        .setContentTitle(title)
+                        .setContentText(message)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                        .build();
+                notificationManagerCompat.notify(1, notification);
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -63,6 +84,7 @@ public class HomepageActivity extends AppCompatActivity
         CSVReader csv = new CSVReader(inputStream);
         List<Happening> happenings = csv.read();
 
+        itemArrayAdapter.add(new Happening("Location:", "Date:", "Time:"));
         for(Happening happening : happenings) {
             itemArrayAdapter.add(happening);
         }
